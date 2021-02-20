@@ -1,0 +1,140 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@sanzskuy09 
+sanzskuy09
+/
+Dumbways-Kloter-4
+1
+00
+Code
+Issues
+Pull requests
+1
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+Dumbways-Kloter-4/2.html
+@sanzskuy09
+sanzskuy09 add Nomer 2
+Latest commit 336f81f 3 hours ago
+ History
+ 1 contributor
+115 lines (98 sloc)  3.48 KB
+  
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nomor 2</title>
+</head>
+
+<body>
+
+  <head>
+    Diketahui
+  </head>
+  <li>Coca - cola = 4000</li>
+  <li>fanta = 3500</li>
+  <li>Pepsi = 4500</li>
+
+  <h3>Pembelian</h3>
+  <form action="" id="form1" method="get">
+    Coca- cola : <input type="number" name="cocacola" id="cola" value="0" />
+    <br />
+    Fanta : <input type="number" name="fanta" id="fanta" value="0" /> <br />
+    Pepsi : <input type="number" name="pepsi" id="pepsi" value="0" />
+  </form>
+  <br />
+  <button onclick="beli()">Beli</button>
+
+  <p id="demo1"></p>
+  <p id="demo2"></p>
+  <p id="demo3"></p>
+  <p id="jumlah"></p>
+  <p id="total"></p>
+  <p id="bayar"></p>
+  <p id="kembalian"></p>
+  <div id="list"></div>
+
+  <script>
+    function beli() {
+      let x = document.getElementById("form1");
+      let text = "";
+      let i;
+      for (i = 0; i < x.length; i++) {
+        text += x.elements[i].value + "<br>";
+      }
+      let cola = document.getElementById("cola").value;
+      let fanta = document.getElementById("fanta").value;
+      let pepsi = document.getElementById("pepsi").value;
+
+      document.getElementById(
+        "demo1"
+      ).innerHTML = `Coca - cola = Rp4000 * ${cola}`;
+      document.getElementById(
+        "demo2"
+      ).innerHTML = `Fanta = Rp3500 * ${fanta}`;
+      document.getElementById(
+        "demo3"
+      ).innerHTML = `Pespi = Rp4500 * ${pepsi}`;
+
+      let totalValue = parseInt(cola) + parseInt(fanta) + parseInt(pepsi);
+      let totalCola = 4000 * cola;
+      let totalFanta = 3500 * fanta;
+      let totalPepsi = 4500 * pepsi;
+      let totalHarga =
+        Number(totalCola) + Number(totalFanta) + Number(totalPepsi);
+
+      let jumlah = document.getElementById("jumlah");
+      jumlah.innerHTML = "Jumlah = " + totalValue;
+
+      let total = document.getElementById("total");
+      total.innerHTML = "Total = Rp" + totalHarga;
+
+      let bayar = document.getElementById("bayar");
+      bayar.innerHTML =
+        'Dibayar = <input type="text" name="uang" id="uang"> <button id="btn-bayar">Bayar</button>';
+
+      let btnBayar = document.getElementById("btn-bayar");
+      btnBayar.addEventListener("click", function () {
+        let uang = document.getElementById("uang").value;
+        let kembali = uang - totalHarga;
+        let kembalian = document.getElementById("kembalian");
+        kembalian.innerHTML = `kembalian = ${kembali}`;
+
+        const data = [100000, 50000, 20000, 10000, 5000, 2000, 1000, 500];
+        for (let i = 0; i < 8; i++) {
+          let jml = kembali / data[i];
+          kembali = kembali - data[i] * Math.floor(jml);
+
+          console.log(kembali)
+          if (jml >= 1) {
+            let list = document.getElementById("list");
+            let listUang = document.createElement("li");
+            let textList = document.createTextNode(`${Math.floor(jml)} Lembar Uang Rp${data[i]}`);
+            listUang.appendChild(textList);
+            list.append(listUang);
+          }
+          
+          if (kembali == 0) {
+            break;
+          }
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>
