@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nomor 1</title>
+</head>
+
+<body>
+    <input id="bil1" type="text" placeholder="Bilangan 1">
+    <input id="bil2" type="text" placeholder="Bilangan 2">
+    <button type="button" id="btn">Cari Bilangan Prima</button>
+
+    <p id="text1"></p>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", bilPrima);
+
+        function bilPrima() {
+            let b1 = Number(document.getElementById("bil1").value);
+            let b2 = Number(document.getElementById("bil2").value);
+            let message1 = document.getElementById("text1");
+            let bil = [];
+
+            for (let i = b1; i <= b2; i++) {
+                let a = 0;
+                for (let n = 1; n <= i; n++) {
+                    if (i % n == 0) {
+                        a += 1;
+                    }
+                }
+
+                if (a == 2) {
+                    bil.push(i);
+                }
+            }
+
+            console.log(bil);
+            message1.innerHTML = `Bilangan Primda antara ${b1} dan ${b2} adalah : ${bil.join(", ")}`;
+        }
+    </script>
+</body>
+
+</html>
